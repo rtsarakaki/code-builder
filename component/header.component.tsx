@@ -23,13 +23,13 @@ export default function Header() {
                 <Typography variant="h5" color={"white"} lineHeight={1.5} letterSpacing={1.5}>
                     {"</>"}&nbsp;
                 </Typography>
-                <Typography variant="h5" color={"orange"} letterSpacing={1.5}>
+                <Typography variant="h5" color={"orange"} letterSpacing={1.5} fontWeight={"bold"}>
                     {"The"}
                 </Typography>
-                <Typography variant="h5" color={"white"} letterSpacing={1.5}>
+                <Typography variant="h5" color={"white"} letterSpacing={1.5} fontWeight={"bold"}>
                     {"Code"}
                 </Typography>
-                <Typography variant="h5" color={"orange"} letterSpacing={1.5}>
+                <Typography variant="h5" color={"orange"} letterSpacing={1.5} fontWeight={"bold"}>
                     {"Builder"}
                 </Typography>
             </Box>

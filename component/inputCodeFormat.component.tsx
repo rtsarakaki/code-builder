@@ -9,14 +9,18 @@ import InputCode from "./inputCode.component";
 type ExtensionLanguage = StreamLanguage<unknown> | LanguageSupport | null;
 
 type ComponentProps = {
+    value: string
+    format: string
     theme: Extension;
     onDataChange?: (value: string) => void;
     onFormatChange?: (value: string, data: string) => void;
 };
 
+
+
 export default function InputCodeFormat(props: ComponentProps) {
-    const [data, setData] = useState<string>("");
-    const [format, setFormat] = useState<string>("json");
+    const [data, setData] = useState<string>(props.value);
+    const [format, setFormat] = useState<string>(props.format);
 
     function handleDataChanged(value: string) {
         setData(value);
@@ -54,15 +58,6 @@ export default function InputCodeFormat(props: ComponentProps) {
         handleDataChanged(dataConverted);
     }
 
-    // function handlePaste(value: string) {
-    //     const isJson = isJsonFormat(value);
-    //     const format = isJson ? "json" : "yaml";
-
-    //     const selectedItem: DropdownItem = {value: format, label: format};
-
-    //     handleFormatChanged(selectedItem, value);
-    // }
-
     const extension: ExtensionLanguage = loadLanguage(format as any);
 
     return (
@@ -74,17 +69,14 @@ export default function InputCodeFormat(props: ComponentProps) {
             onChange={(value: string) => {
                 handleDataChanged(value);
             }}
-            // onPaste={(value: string) => {
-            //     handlePaste(value);
-            // }}
             extensions={[extension as Extension]}
             theme={props.theme}
         >
             <Dropdown
                 label="Format"
                 items={[
-                    {value: "json", label: "JSON"},
-                    {value: "yaml", label: "YAML"},
+                    {value: "json", label: "json"},
+                    {value: "yaml", label: "yaml"},
                 ]}
                 size="small"
                 value={format}
