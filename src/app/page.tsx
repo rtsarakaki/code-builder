@@ -1,95 +1,46 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+
+import {Grid} from "@mui/material";
+import {useState} from "react";
+import Header from "../../component/header.component";
+import InputCode from "../../component/inputCode.component";
+import Handlebars from "handlebars";
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="./vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    const [data, setData] = useState<string>("Put your data in JSON or YAML format.");
+    const [template, setTemplate] = useState<string>("Build your template.");
+    const [code, setCode] = useState<string>("Here is your code!");
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="./next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+    function handleDataChanged(value: string) {
+        setData(value);
+        const code = generateCode(value, template);
+        setCode(code);
+    }
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+    function handleTemplateChanged(value: string) {
+        setTemplate(value);
+        const code = generateCode(data, value);
+        setCode(code);
+    }
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+    function generateCode(data: string, template: string) {
+        try {
+            const templateCompiled = Handlebars.compile(template);
+            const context = JSON.parse(data);
+            return templateCompiled(context);
+        } catch (err: any) {
+            return err.message;
+        }
+    }
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    return (
+        <>
+            <Header />
+            <Grid container columnSpacing={{xs: 1}} sx={{height: "calc(100vh - 50px)", backgroundColor: "gray"}}>
+                <InputCode value={data} sm={12} md={3} onChange={(value: string) => handleDataChanged(value)} />
+                <InputCode value={template} sm={12} md={4.5} onChange={(value: string) => handleTemplateChanged(value)} />
+                <InputCode value={code} sm={12} md={4.5} readOnly />
+            </Grid>
+        </>
+    );
 }
