@@ -1,6 +1,6 @@
 "use client";
 
-import {Grid} from "@mui/material";
+import {Box, Button, ButtonGroup, Grid, Stack} from "@mui/material";
 
 import {LanguageSupport, StreamLanguage} from "@codemirror/language";
 import {loadLanguage} from "@uiw/codemirror-extensions-langs";
@@ -15,6 +15,7 @@ import DropdownThemes from "../../component/dropdownThemes.component";
 import Header from "../../component/header.component";
 import InputCode from "../../component/inputCode.component";
 import InputCodeFormat from "../../component/inputCodeFormat.component";
+import SideMenu from "../../component/sideMenu.component";
 
 type ExtensionLanguage = StreamLanguage<unknown> | LanguageSupport | null;
 
@@ -162,47 +163,52 @@ export default function Home() {
     return (
         <>
             <Header />
-            <Grid container sx={{backgroundColor: "#282A0", marginLeft: "10px", width: "98%"}}>
-                <InputCodeFormat
-                    value={data}
-                    format={format}
-                    onDataChange={(value: string) => handleDataChanged(value)}
-                    onFormatChange={(value: string) => handleFormatChanged(value)}
-                    theme={themeExtensionEditor}
-                />
-                <InputCode
-                    label="Build your template using expressions in the Handlebars pattern."
-                    value={template}
-                    sm={12}
-                    md={4.5}
-                    onChange={(value: string) => handleTemplateChanged(value)}
-                    extensions={[languageExtensionToHighlightTemplateEditor as Extension]}
-                    theme={themeExtensionEditor}
-                >
-                    <DropdownLanguages
-                        value="typescript"
-                        onChange={(extension: ExtensionLanguage) => {
-                            handleLanguageChanged(extension);
-                        }}
-                    />
-                </InputCode>
-                <InputCode
-                    label="See the code being generated in real time as you build your template. (Readonly)"
-                    value={code}
-                    sm={12}
-                    md={4.5}
-                    extensions={[languageExtensionToHighlightTemplateEditor as Extension]}
-                    theme={themeExtensionEditor}
-                    readOnly
-                >
-                    <DropdownThemes
-                        onChange={(selectedItem: DropdownItem) => {
-                            handleThemeChanged(selectedItem);
-                        }}
-                        value="Github Dark"
-                    />
-                </InputCode>
-            </Grid>
+            <Box sx={{display: "flex"}}>
+                <SideMenu />
+                <Box>
+                    <Grid container sx={{backgroundColor: "#282A0", marginLeft: "10px", width: "98%"}}>
+                        <InputCodeFormat
+                            value={data}
+                            format={format}
+                            onDataChange={(value: string) => handleDataChanged(value)}
+                            onFormatChange={(value: string) => handleFormatChanged(value)}
+                            theme={themeExtensionEditor}
+                        />
+                        <InputCode
+                            label="Build your template using expressions in the Handlebars pattern."
+                            value={template}
+                            sm={12}
+                            md={4.5}
+                            onChange={(value: string) => handleTemplateChanged(value)}
+                            extensions={[languageExtensionToHighlightTemplateEditor as Extension]}
+                            theme={themeExtensionEditor}
+                        >
+                            <DropdownLanguages
+                                value="typescript"
+                                onChange={(extension: ExtensionLanguage) => {
+                                    handleLanguageChanged(extension);
+                                }}
+                            />
+                        </InputCode>
+                        <InputCode
+                            label="See the code being generated in real time as you build your template. (Readonly)"
+                            value={code}
+                            sm={12}
+                            md={4.5}
+                            extensions={[languageExtensionToHighlightTemplateEditor as Extension]}
+                            theme={themeExtensionEditor}
+                            readOnly
+                        >
+                            <DropdownThemes
+                                onChange={(selectedItem: DropdownItem) => {
+                                    handleThemeChanged(selectedItem);
+                                }}
+                                value="Github Dark"
+                            />
+                        </InputCode>
+                    </Grid>
+                </Box>
+            </Box>
         </>
     );
 }

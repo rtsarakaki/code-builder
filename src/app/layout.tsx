@@ -16,6 +16,8 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         <html lang="en">
             <head />
             <body>
+                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
                 <ThemeProvider theme={darkTheme}>
                     <CssBaseline />
                     {children}
