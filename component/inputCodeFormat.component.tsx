@@ -54,14 +54,14 @@ export default function InputCodeFormat(props: ComponentProps) {
         handleDataChanged(dataConverted);
     }
 
-    function handlePaste(value: string) {
-        const isJson = isJsonFormat(value);
-        const format = isJson ? "json" : "yaml";
+    // function handlePaste(value: string) {
+    //     const isJson = isJsonFormat(value);
+    //     const format = isJson ? "json" : "yaml";
 
-        const selectedItem: DropdownItem = {value: format, label: format};
+    //     const selectedItem: DropdownItem = {value: format, label: format};
 
-        handleFormatChanged(selectedItem, value);
-    }
+    //     handleFormatChanged(selectedItem, value);
+    // }
 
     const extension: ExtensionLanguage = loadLanguage(format as any);
 
@@ -74,9 +74,9 @@ export default function InputCodeFormat(props: ComponentProps) {
             onChange={(value: string) => {
                 handleDataChanged(value);
             }}
-            onPaste={(value: string) => {
-                handlePaste(value);
-            }}
+            // onPaste={(value: string) => {
+            //     handlePaste(value);
+            // }}
             extensions={[extension as Extension]}
             theme={props.theme}
         >

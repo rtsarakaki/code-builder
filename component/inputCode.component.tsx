@@ -69,6 +69,7 @@ export default function InputCode(props: ComponentProps) {
             <Box sx={{ paddingBottom: "2px"}}>
                 <CodeMirror
                     value={props.value}
+                    
                     extensions={props.extensions}
                     onChange={(value: string) => {
                         onChange(value);
