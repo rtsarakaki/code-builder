@@ -3,24 +3,21 @@ import {loadLanguage} from "@uiw/codemirror-extensions-langs";
 import {Extension} from "@uiw/react-codemirror";
 import yaml from "js-yaml";
 import {useState} from "react";
-import Dropdown, {DropdownItem} from "./dropdown.component";
-import InputCode from "./inputCode.component";
+import Dropdown, {DropdownItem} from "../../../../../shared/components/Dropdown.component";
+import InputCode from "./InputCode.component";
 
 type ExtensionLanguage = StreamLanguage<unknown> | LanguageSupport | null;
 
 type ComponentProps = {
-    value: string
-    format: string
+    value: string;
     theme: Extension;
     onDataChange?: (value: string) => void;
     onFormatChange?: (value: string, data: string) => void;
 };
 
-
-
 export default function InputCodeFormat(props: ComponentProps) {
     const [data, setData] = useState<string>(props.value);
-    const [format, setFormat] = useState<string>(props.format);
+    const [format, setFormat] = useState<string>("yaml");
 
     function handleDataChanged(value: string) {
         setData(value);

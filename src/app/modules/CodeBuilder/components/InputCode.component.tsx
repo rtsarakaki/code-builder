@@ -1,13 +1,5 @@
-import {Box, Grid, Typography} from "@mui/material";
-import {dracula} from "@uiw/codemirror-theme-dracula";
-import {materialDark, materialLight} from "@uiw/codemirror-theme-material";
-import CodeMirror, {Extension} from "@uiw/react-codemirror";
-
-const themes = [
-    {name: "Dracula", extension: dracula},
-    {name: "Material Dark", extension: materialDark},
-    {name: "Material Light", extension: materialLight},
-];
+import { Box, Grid, Typography } from "@mui/material";
+import CodeMirror, { Extension } from "@uiw/react-codemirror";
 
 type ComponentProps = {
     extensions?: Extension[];
@@ -40,8 +32,6 @@ export default function InputCode(props: ComponentProps) {
             props.onPaste?.(pastedData);
         }
     }
-
-    const childrenHeight = props.children ? props.children.props.height ?? 0 : 0;
 
     return (
         <Grid item margin={"2px"} marginTop={"0px"} sm={props.sm ?? 12} md={props.md} xs={props.xs}>

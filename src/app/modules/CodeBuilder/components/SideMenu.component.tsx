@@ -1,12 +1,10 @@
 import { Box, Stack } from "@mui/material";
-import { blue, orange } from "@mui/material/colors";
-import IconMenuButton from "./iconMenuButton.component";
+import IconMenuButton from "../../../../../shared/components/iconMenuButton.component";
 
 type ComponentProps = {};
 
 export default function SideMenu(props: ComponentProps) {
-
-	const color = "white";
+    const color = "white";
 
     return (
         <>

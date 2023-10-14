@@ -1,14 +1,13 @@
-import Dropdown, { DropdownItem } from "./dropdown.component";
+import Dropdown, {DropdownItem} from "../../../../../shared/components/Dropdown.component";
 
-import {abyss, abyssInit} from "@uiw/codemirror-theme-abyss";
-import { dracula } from "@uiw/codemirror-theme-dracula";
-import { eclipse } from "@uiw/codemirror-theme-eclipse";
-import { githubDark, githubLight } from "@uiw/codemirror-theme-github";
-import { materialDark, materialLight } from "@uiw/codemirror-theme-material";
-import { monokai } from "@uiw/codemirror-theme-monokai";
-import { sublime } from "@uiw/codemirror-theme-sublime";
-import { vscodeDark } from '@uiw/codemirror-theme-vscode';
-
+import {abyss} from "@uiw/codemirror-theme-abyss";
+import {dracula} from "@uiw/codemirror-theme-dracula";
+import {eclipse} from "@uiw/codemirror-theme-eclipse";
+import {githubDark, githubLight} from "@uiw/codemirror-theme-github";
+import {materialDark, materialLight} from "@uiw/codemirror-theme-material";
+import {monokai} from "@uiw/codemirror-theme-monokai";
+import {sublime} from "@uiw/codemirror-theme-sublime";
+import {vscodeDark} from "@uiw/codemirror-theme-vscode";
 
 const themes = [
     {label: "Abyss", value: abyss},
@@ -30,7 +29,6 @@ type ComponentProps = {
 };
 
 export default function DropdownThemes(props: ComponentProps) {
-
     function handleChange(selectedItem: DropdownItem) {
         if (props.onChange) {
             props.onChange?.(selectedItem);

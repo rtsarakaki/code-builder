@@ -1,7 +1,7 @@
+import {LanguageSupport, StreamLanguage} from "@codemirror/language";
 import {langNames, loadLanguage} from "@uiw/codemirror-extensions-langs";
-import {StreamLanguage, LanguageSupport} from "@codemirror/language";
 import {useEffect, useState} from "react";
-import Dropdown, {DropdownItem} from "./dropdown.component";
+import Dropdown, {DropdownItem} from "../../../../../shared/components/Dropdown.component";
 
 type ComponentProps = {
     width?: string;
